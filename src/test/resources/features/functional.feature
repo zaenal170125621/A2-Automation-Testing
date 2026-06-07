@@ -34,4 +34,4 @@ Feature: Functional Testing - JTK Learn (Progress Overview - FR12)
     And User should see course "Kursus Kosong A2" with 0 students, 1 materials, and 1 quizzes
     When User clicks on the Progres button for course "Kursus Kosong A2"
     Then User should be navigated to the course progress overview page
-    And User should see the message "Belum ada pelajar yang mengerjakan kuis."
+    And User should see the message "Belum ada pelajar yang mengikuti kursus."

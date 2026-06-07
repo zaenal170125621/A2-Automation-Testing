@@ -128,4 +128,13 @@ public class FunctionalSteps {
         progressPage = new ProgressPage(driver);
         assertThat(progressPage.isPageDisplayed()).isTrue();
     }
+
+    @Then("User should see the message {string}")
+    public void userShouldSeeTheMessage(String expectedMessage) {
+        driver = Hooks.getDriver();
+        WebElement quizTable = driver.findElement(org.openqa.selenium.By.className("quiz-table"));
+        WebElement messageElement = quizTable.findElement(org.openqa.selenium.By.xpath(".//p[@class='text-center']"));
+        String messageText = messageElement.getText();
+        assertThat(messageText).isEqualTo(expectedMessage);
+    }
 }

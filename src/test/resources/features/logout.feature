@@ -9,11 +9,10 @@ Feature: Logout Functionality
     And User has navigated to the JTK Learn login page
     And User is logged in with email "Pengajar5@example.com" and password "Pengajar5"
 
-  @positive @TC-2.0.1 @Zaki
+  @positive @TC-2.1 @Zaki
   # Penguji: Zaki
-  Scenario: [Template] Check logout is successful
-    # TODO: Zaki - Silakan isi langkah-langkah pengujian di sini
-    # Contoh:
-    # When User clicks on the profile or menu button
-    # And User clicks on the logout button
-    # Then User should be redirected to the login page
+  Scenario: Check logout is successful
+    When User clicks on the profile or menu button
+    And User clicks on the logout button 
+    Then User should be redirected to the login page
+    

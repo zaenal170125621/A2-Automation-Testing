@@ -26,10 +26,12 @@ Feature: Functional Testing - JTK Learn (Progress Overview - FR12)
     When User clicks on the Progres button for course "CyberSecurity"
     Then User should be navigated to the course progress overview page
 
-  @positive @TC-FR12-004 @Zaki
-  # Penguji: Zaki
-  Scenario: [Template] Skenario Progress Overview oleh Zaki
-    # TODO: Zaki - Silakan isi skenario pengujian fungsional di sini
-    # Contoh:
-    # When User melihat grafik progres belajar
-    # Then User dapat melihat statistik keaktifan kelas
+  @negative @TC-FR12-008 @Zaki
+  # Penguji: Zaki 
+  Scenario: Display progress overview when course has no registered students
+    When User clicks on the Pemantauan menu link
+    Then User should see the Pemantauan page
+    And User should see course "Kursus Kosong A2" with 0 students, 1 materials, and 1 quizzes
+    When User clicks on the Progres button for course "Kursus Kosong A2"
+    Then User should be navigated to the course progress overview page
+    And User should see the message "Belum ada pelajar yang mengerjakan kuis."

@@ -8,6 +8,10 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pages.DashboardPage;
 import pages.LoginPage;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.junit.Assert;
+import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -71,4 +75,45 @@ public class LoginSteps {
     public void userShouldSeeAnUnsuccessfulLoginNotificationMessage() {
         assertThat(loginPage.isErrorMessageDisplayed()).isTrue();
     }
+
+    @Given("pengguna berada di halaman login")
+    public void bukaHalamanLogin() {
+        if (driver == null) {
+            driver = hooks.Hooks.getDriver();
+        }
+        driver.get(BASE_URL);
+        loginPage = new LoginPage(driver);
+    }
+
+    @When("pengguna memasukkan email {string}")
+    public void masukkanEmail(String email) {
+        loginPage.enterEmail(email);
+    }
+
+    @When("pengguna memasukkan password {string}")
+    public void masukkanPassword(String password) {
+        loginPage.enterPassword(password);
+    }
+
+    @When("pengguna klik tombol masuk")
+    public void klikTombolMasuk() {
+        loginPage.clickLogin();
+    }
+
+    @Then("pengguna diarahkan ke halaman dashboard pengajar")
+    public void verifikasiDashboardPengajar() {
+        if (driver == null) {
+            driver = hooks.Hooks.getDriver();
+        }
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlContains("dashboard-pengajar"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("dashboard-pengajar"));
+        dashboardPage = new DashboardPage(driver);
+    }
+
+    @Then("sistem menampilkan pesan {string}")
+    public void verifikasiPesanKosong(String expectedMessage) {
+        Assert.assertEquals(expectedMessage, dashboardPage.getPesanKosong());
+    }
 }
+

@@ -27,6 +27,13 @@ public class LoginPage {
     @FindBy(css = "input[placeholder='Masukan kata sandi']")
     private WebElement passwordInput;
 
+    @FindBy(css = "input[type='email']")
+    private WebElement emailField;
+
+    @FindBy(css = "input[type='password']")
+    private WebElement passwordField;
+
+
     @FindBy(css = "button.btn-danger")
     private WebElement loginButton;
 
@@ -170,5 +177,13 @@ public class LoginPage {
      */
     public String getPageTitle() {
         return driver.getTitle();
+    }
+
+    /**
+     * Click login button (for source compatibility)
+     */
+    public void clickLogin() {
+        wait.until(ExpectedConditions.elementToBeClickable(loginButton));
+        loginButton.click();
     }
 }

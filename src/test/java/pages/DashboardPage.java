@@ -58,6 +58,10 @@ public class DashboardPage {
     @FindBy(css = "a.navbar-brand")
     private WebElement navbarBrand;
 
+    @FindBy(css = ".row.row-custom-gap p")
+    private WebElement pesanKosong;
+
+
     // ===== Constructor with Page Factory =====
 
     public DashboardPage(WebDriver driver) {
@@ -200,5 +204,13 @@ public class DashboardPage {
      */
     public boolean isOnDashboard() {
         return driver.getCurrentUrl().contains("dashboard");
+    }
+
+    /**
+     * Get empty course message from dashboard
+     */
+    public String getPesanKosong() {
+        wait.until(ExpectedConditions.visibilityOf(pesanKosong));
+        return pesanKosong.getText();
     }
 }

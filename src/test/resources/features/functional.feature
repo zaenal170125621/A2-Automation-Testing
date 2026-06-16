@@ -35,3 +35,11 @@ Feature: Functional Testing - JTK Learn (Progress Overview - FR12)
     When User clicks on the Progres button for course "Kursus Kosong A2"
     Then User should be navigated to the course progress overview page
     And User should see the message "Belum ada pelajar yang mengikuti kursus."
+
+  Scenario: Pengajar yang belum membuat kursus melihat pesan kosong di dashboard
+    Given pengguna berada di halaman login
+    When pengguna memasukkan email "Pengajar55@example.com"
+    And pengguna memasukkan password "PengajarFaiz"
+    And pengguna klik tombol masuk
+    Then pengguna diarahkan ke halaman dashboard pengajar
+    And sistem menampilkan pesan "Belum ada kursus yang dibuat."

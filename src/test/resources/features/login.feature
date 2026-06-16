@@ -25,3 +25,10 @@ Feature: Login Functionality
     And User enters password "admin123" in the password field
     And User clicks on the login button
     Then User should see an unsuccessful login notification message
+
+  Scenario: Login berhasil dengan kredensial valid sebagai pengajar
+    Given pengguna berada di halaman login
+    When pengguna memasukkan email "Pengajar55@example.com"
+    And pengguna memasukkan password "PengajarFaiz"
+    And pengguna klik tombol masuk
+    Then pengguna diarahkan ke halaman dashboard pengajar
